@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root 'courses#index'
 
   resources :courses
-
+  resources :students, except: [:destroy]
   get 'about', to: 'pages#about'
 end
