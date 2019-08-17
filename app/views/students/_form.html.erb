@@ -19,11 +19,23 @@
                         </div>
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <%= f.label :email %>
-                                <%= f.text_field :email %>
+                                <%= f.label :email, class: 'active' %>
+                                <%= f.email_field :email %>
                             </div>
                         </div>
-                        <%= f.submit(@student.new_record? ? 'Sign up' : 'Submit changes', class: 'btn waves-effect waves-light right') %>
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <%= f.label :password, class: 'active' %>
+                                <%= f.password_field :password %>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <%= f.label :password_confirmation, class: 'active' %>
+                                <%= f.password_field :password_confirmation, placeholder: 'confirm your password' %>
+                            </div>
+                        </div>
+                        <%= f.button(@student.new_record? ? 'Sign up' : 'Submit changes', class: 'btn waves-effect waves-light right') %>
                     <% end %>
                 </div>
             </div>
