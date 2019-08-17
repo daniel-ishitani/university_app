@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
+    skip_before_action :require_user, only: [:new, :create]
     before_action :set_student, except: [:index, :new, :create]
+    before_action :require_permission, only: [:edit, :update]
 
     def index
         @students = Student.all
@@ -36,6 +38,13 @@ class StudentsController < ApplicationController
     end
 
     private
+
+    def require_permission
+        if current_user != @student
+            flash[:error] = "You don't have permission to perform this action"
+            redirect_to student_path(current_user)
+        end
+    end
 
     def set_student
         @student = Student.find(params[:id])
